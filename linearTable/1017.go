@@ -14,6 +14,8 @@ func getLen(list List) {
 //清空表
 func clearList(list *List) {
 	list.elem = nil
+	list.len = len(list.elem)
+	list.cap = cap(list.elem)
 }
 
 //判断表是否满了
@@ -51,6 +53,8 @@ func listAdd(listA *List, seat int, value int) {
 	} else {
 		println("请填写正确的位置")
 	}
+	listA.len = len(listA.elem)
+	listA.cap = cap(listA.elem)
 }
 
 //改变数值
@@ -69,23 +73,40 @@ func listChange(listA *List, seat int, value int) {
 	} else {
 		println("请填写正确的位置")
 	}
+	listA.len = len(listA.elem)
+	listA.cap = cap(listA.elem)
 }
 
 //删除指定元素
 func listDelete(listA *List, seat int) {
 	if seat >= 1 && seat <= listA.len {
-		listB := listA.elem[:seat-1]
+		switch seat {
 
-		listC := make([]int, seat-1, listA.cap)
-		copy(listC, listB)
+		case 0:
+			listB := listA.elem[1:]
+			listC := make([]int, len(listA.elem), cap(listA.elem))
+			copy(listC, listB)
+			listA.elem = listC
 
-		listB = listA.elem[seat:]
-		listC = append(listC, listB...)
-		listA.elem = listC
+		case len(listA.elem):
+			listB := listA.elem[:len(listA.elem)-1]
+			listC := make([]int, len(listA.elem), cap(listA.elem))
+			copy(listC, listB)
+			listA.elem = listC
 
+		default:
+			listB := listA.elem[:seat-1]
+			listC := make([]int, seat-1, listA.cap)
+			copy(listC, listB)
+			listB = listA.elem[seat:]
+			listC = append(listC, listB...)
+			listA.elem = listC
+		}
 	} else {
 		println("请填写正确的位置")
 	}
+	listA.len = len(listA.elem)
+	listA.cap = cap(listA.elem)
 }
 
 //得到指定元素
@@ -104,6 +125,8 @@ func listergodic(list List) {
 //拼接表AB
 func addList(listA *List, listB *List) {
 	listA.elem = append(listA.elem, listB.elem...)
+	listA.len = len(listA.elem)
+	listA.cap = cap(listA.elem)
 }
 
 //遍历切片
@@ -112,4 +135,38 @@ func ergodic(list []int) {
 		println(list[i])
 	}
 	println()
+}
+
+//删除表中有指定内容的象
+func deleteTarget(list *List, value int) {
+	Len := 0
+	for i, v := range list.elem {
+		if v == value {
+			Len++
+			switch i {
+
+			case 0:
+				listB := list.elem[1:]
+				listC := make([]int, len(list.elem)-Len, cap(list.elem))
+				copy(listC, listB)
+				list.elem = listC
+
+			case list.len - 1:
+				listB := list.elem[:len(list.elem)-1]
+				listC := make([]int, list.len-Len, cap(list.elem))
+				copy(listC, listB)
+				list.elem = listC
+
+			default:
+				listB := list.elem[:i-1]
+				listC := make([]int, i-1, list.cap)
+				copy(listC, listB)
+				listB = list.elem[i:]
+				listC = append(listC, listB...)
+				list.elem = listC
+			}
+		}
+	}
+	list.len = len(list.elem)
+	list.cap = cap(list.elem)
 }
