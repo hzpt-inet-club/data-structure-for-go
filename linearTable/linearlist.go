@@ -1,7 +1,7 @@
 package main
 
 type List struct {
-	elem []int
+	elem []interface{}
 	len  int
 	cap  int
 }
@@ -37,11 +37,11 @@ func ifNil(list List) {
 }
 
 //添加数值
-func listAdd(listA *List, seat int, value int) {
+func listAdd(listA *List, seat int, value interface{}) {
 	if seat >= 1 && seat <= listA.len {
 		listB := listA.elem[:seat-1]
 
-		listC := make([]int, seat-1, listA.cap+1)
+		listC := make([]interface{}, seat-1, listA.cap+1)
 		copy(listC, listB)
 
 		listC = append(listC, value)
@@ -58,11 +58,11 @@ func listAdd(listA *List, seat int, value int) {
 }
 
 //改变数值
-func listChange(listA *List, seat int, value int) {
+func listChange(listA *List, seat int, value interface{}) {
 	if seat >= 1 && seat <= listA.len {
 		listB := listA.elem[:seat-1]
 
-		listC := make([]int, seat-1, listA.cap)
+		listC := make([]interface{}, seat-1, listA.cap)
 		copy(listC, listB)
 
 		listC = append(listC, value)
@@ -84,19 +84,19 @@ func listDelete(listA *List, seat int) {
 
 		case 0:
 			listB := listA.elem[1:]
-			listC := make([]int, len(listA.elem), cap(listA.elem))
+			listC := make([]interface{}, len(listA.elem), cap(listA.elem))
 			copy(listC, listB)
 			listA.elem = listC
 
 		case len(listA.elem):
 			listB := listA.elem[:len(listA.elem)-1]
-			listC := make([]int, len(listA.elem), cap(listA.elem))
+			listC := make([]interface{}, len(listA.elem), cap(listA.elem))
 			copy(listC, listB)
 			listA.elem = listC
 
 		default:
 			listB := listA.elem[:seat-1]
-			listC := make([]int, seat-1, listA.cap)
+			listC := make([]interface{}, seat-1, listA.cap)
 			copy(listC, listB)
 			listB = listA.elem[seat:]
 			listC = append(listC, listB...)
@@ -138,7 +138,7 @@ func ergodic(list []int) {
 }
 
 //删除表中有指定内容的象
-func deleteTarget(list *List, value int) {
+func deleteTarget(list *List, value interface{}) {
 	Len := 0
 	for i, v := range list.elem {
 		if v == value {
@@ -147,19 +147,19 @@ func deleteTarget(list *List, value int) {
 
 			case 0:
 				listB := list.elem[1:]
-				listC := make([]int, len(list.elem)-Len, cap(list.elem))
+				listC := make([]interface{}, len(list.elem)-Len, cap(list.elem))
 				copy(listC, listB)
 				list.elem = listC
 
 			case list.len - 1:
 				listB := list.elem[:len(list.elem)-1]
-				listC := make([]int, list.len-Len, cap(list.elem))
+				listC := make([]interface{}, list.len-Len, cap(list.elem))
 				copy(listC, listB)
 				list.elem = listC
 
 			default:
 				listB := list.elem[:i-1]
-				listC := make([]int, i-1, list.cap)
+				listC := make([]interface{}, i-1, list.cap)
 				copy(listC, listB)
 				listB = list.elem[i:]
 				listC = append(listC, listB...)
