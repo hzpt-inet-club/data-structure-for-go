@@ -27,7 +27,7 @@ func full(list List) {
 	}
 }
 
-//判断是否为空
+// ifNil 判断是否为空
 func ifNil(list List) {
 	if list.elem != nil {
 		println("这不是空的")
@@ -36,7 +36,7 @@ func ifNil(list List) {
 	}
 }
 
-//添加数值
+// listAdd 添加数值
 func listAdd(listA *List, seat int, value interface{}) {
 	if seat >= 1 && seat <= listA.len {
 		listB := listA.elem[:seat-1]
