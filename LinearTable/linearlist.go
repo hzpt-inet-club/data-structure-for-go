@@ -6,19 +6,19 @@ type List struct {
 	cap  int
 }
 
-//求长度
+// getLen 求长度
 func getLen(list List) {
 	println(len(list.elem))
 }
 
-//清空表
+// clearList 清空表
 func clearList(list *List) {
 	list.elem = nil
 	list.len = len(list.elem)
 	list.cap = cap(list.elem)
 }
 
-//判断表是否满了
+// full 判断表是否满了
 func full(list List) {
 	if len(list.elem) == cap(list.elem) {
 		println("表满")
