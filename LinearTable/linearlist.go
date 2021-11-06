@@ -57,7 +57,7 @@ func listAdd(listA *List, seat int, value interface{}) {
 	listA.cap = cap(listA.elem)
 }
 
-//改变数值
+// listChange 改变数值
 func listChange(listA *List, seat int, value interface{}) {
 	if seat >= 1 && seat <= listA.len {
 		listB := listA.elem[:seat-1]
@@ -77,7 +77,7 @@ func listChange(listA *List, seat int, value interface{}) {
 	listA.cap = cap(listA.elem)
 }
 
-//删除指定元素
+// listDelete 删除指定元素
 func listDelete(listA *List, seat int) {
 	if seat >= 1 && seat <= listA.len {
 		switch seat {
@@ -109,12 +109,12 @@ func listDelete(listA *List, seat int) {
 	listA.cap = cap(listA.elem)
 }
 
-//得到指定元素
+// getElem 得到指定元素
 func getElem(list List, seat int) {
 	println(list.elem[seat])
 }
 
-//遍历数组
+// listergodic 遍历数组
 func listergodic(list List) {
 	for i := 0; i < len(list.elem); i++ {
 		println(list.elem[i])
@@ -122,14 +122,14 @@ func listergodic(list List) {
 	println()
 }
 
-//拼接表AB
+// addList 拼接表AB
 func addList(listA *List, listB *List) {
 	listA.elem = append(listA.elem, listB.elem...)
 	listA.len = len(listA.elem)
 	listA.cap = cap(listA.elem)
 }
 
-//遍历切片
+// ergodic 遍历切片
 func ergodic(list []int) {
 	for i := 0; i < len(list); i++ {
 		println(list[i])
@@ -137,7 +137,7 @@ func ergodic(list []int) {
 	println()
 }
 
-//删除表中有指定内容的象
+// deleteTarget 删除表中有指定内容的象
 func deleteTarget(list *List, value interface{}) {
 	Len := 0
 	for i, v := range list.elem {
