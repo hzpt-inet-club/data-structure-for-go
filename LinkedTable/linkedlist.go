@@ -137,7 +137,7 @@ func (LinkListA *LinkList) ConnectLinkList(list LinkList) {
 	head.Next = list.Head.Next
 }
 
-// FindValue 查找Node种Data等于Value的项
+// FindValue 查找Node中Data等于Value的项
 func (LinkListA LinkList) FindValue(a interface{}) ([]int, []Node) {
 	head := LinkListA.Head.Next
 	intSlice := make([]int, LinkListA.GetLen())
