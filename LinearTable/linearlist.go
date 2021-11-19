@@ -2,6 +2,7 @@ package LinearTable
 
 import "fmt"
 
+// List 线性表
 type List struct {
 	elem []interface{}
 	len  int
