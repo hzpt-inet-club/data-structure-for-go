@@ -30,7 +30,7 @@ data-structure-for-go 是一组能用但是不咋地的数据结构中储存结�
 
 ## 贡献
 
-请参考[这个](https://github.com/hzpt-inet-club/home/blob/main/README.md)
+请参考[这个](https://github.com/hzpt-inet-club/home/blob/6935a9e24a3889088bbe90a71a35c8b7012f3574/CODE_OF_CONDUCT.md)
 
 
 
